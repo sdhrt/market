@@ -10,11 +10,14 @@ export default function ImageUpload({
   setImages: (prev: any) => void;
 }) {
   const [preview, setPreview] = React.useState<any[]>([]);
-  const onDrop = useCallback((acceptedFiles: any & File) => {
-    const cachedUrl = URL.createObjectURL(acceptedFiles[0]);
-    setPreview((prev) => [...prev, cachedUrl]);
-    setImages((prev: any) => [...prev, acceptedFiles[0]]);
-  }, []);
+  const onDrop = useCallback(
+    (acceptedFiles: any & File) => {
+      const cachedUrl = URL.createObjectURL(acceptedFiles[0]);
+      setPreview((prev) => [...prev, cachedUrl]);
+      setImages((prev: any) => [...prev, acceptedFiles[0]]);
+    },
+    [setImages],
+  );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
@@ -33,7 +36,7 @@ export default function ImageUpload({
           {isDragActive ? (
             <p>Drop the files here...</p>
           ) : (
-            <p>Drag 'n' drop some files here, or click to select files</p>
+            <p>Drag and drop some files here, or click to select files</p>
           )}
         </div>
       </div>
