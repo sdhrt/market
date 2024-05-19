@@ -22,6 +22,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "drizzle-orm": "^0.30.10",
+    "embla-carousel-react": "^8.1.1",
     "eslint-plugin-drizzle": "^0.2.3",
     "image-compressor": "^2.0.3",
     "lucide-react": "^0.378.0",

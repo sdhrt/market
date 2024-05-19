@@ -5,8 +5,6 @@ export async function POST(req: NextRequest) {
   const body = await req.json();
   const { name, price, description, images, seller } = body;
 
-    console.log(images)
-
   const { ok } = await createProduct({
     name,
     price,

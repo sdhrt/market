@@ -1,21 +1,23 @@
 import { getProducts } from "@/drizzle/product";
 import { productType } from "@/drizzle/schema";
 import Image from "next/image";
+import Link from "next/link";
 
 async function GetProduct() {
   const products: productType[] = await getProducts();
-  console.log(products);
   return (
-    <div className="flex flex-col flex-wrap gap-4">
-      {products.map(async (product) => {
+    <div className="flex flex-wrap gap-4">
+      {products.map((product) => {
         const image = JSON.parse(product?.images!)[0];
         return (
-          <div className="border w-60 p-4" key={product.id}>
-            <div className="text-sm">
-              <Image src={image} width={200} height={200} alt={image} />
+          <Link href={`/product/${product.id}`} key={product.id}>
+            <div className="border w-60 p-4 flex flex-col items-center">
+              <div className="h-40 w-40 relative">
+                <Image src={image} fill objectFit="contain" alt={image} />
+              </div>
+              <span className="text-xl font-semibold">{product.name}</span>
             </div>
-            <span className="text-xl font-semibold">{product.name}</span>
-          </div>
+          </Link>
         );
       })}
     </div>

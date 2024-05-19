@@ -9,6 +9,12 @@ export const getProducts = async () => {
   return db.query.products.findMany();
 };
 
+export const getProduct = async (id: number) => {
+  return db.query.products.findFirst({
+    where: (products, { eq }) => eq(products.id, id),
+  });
+};
+
 export const createProduct = async ({
   name,
   price,
