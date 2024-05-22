@@ -1,5 +1,11 @@
+import MarketingHero from "./_components/MarketingHero";
+
 function Page() {
-  return <div>Marketing page</div>;
+  return (
+    <div>
+      <MarketingHero />
+    </div>
+  );
 }
 
 export default Page;

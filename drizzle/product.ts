@@ -2,15 +2,27 @@ import "@/drizzle/env.drizzle";
 import { drizzle } from "drizzle-orm/vercel-postgres";
 import { sql } from "@vercel/postgres";
 import * as schema from "./schema";
+import { ilike } from "drizzle-orm";
 
 export const db = drizzle(sql, { schema });
 
-export const getProducts = async () => {
-  return db.query.products.findMany();
-};
+export async function getProducts({
+  productName,
+}: {
+  productName?: string | undefined;
+}) {
+  if (productName) {
+    return db
+      .select()
+      .from(schema.products)
+      .where(ilike(schema.products.name, `%${productName}%`));
+  }
+
+  return await db.query.products.findMany();
+}
 
 export const getProduct = async (id: number) => {
-  return db.query.products.findFirst({
+  return await db.query.products.findFirst({
     where: (products, { eq }) => eq(products.id, id),
   });
 };

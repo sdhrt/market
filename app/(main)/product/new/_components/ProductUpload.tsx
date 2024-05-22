@@ -55,7 +55,7 @@ function ProductUpload({ input, images }: productProps) {
       return;
     }
 
-    if (images.length > 2) {
+    if (images.length > 3) {
       toast({
         title: "Please refresh and select only 3 images",
         variant: "destructive",

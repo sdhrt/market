@@ -27,3 +27,13 @@ export const products = pgTable(
   },
 );
 export type productType = InferInsertModel<typeof products>;
+
+export const ideas = pgTable("ideas", {
+  id: serial("id").primaryKey(),
+  title: text("name").notNull(),
+  description: text("description"),
+  creatorName: text("creatorName").notNull(),
+  creatorEmail: text("creatorEmail").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+export type ideaType = InferInsertModel<typeof ideas>;
