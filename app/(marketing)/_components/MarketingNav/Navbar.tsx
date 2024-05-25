@@ -10,18 +10,22 @@ const roboto = Roboto({
 async function Navbar() {
   const { userId } = auth();
   return (
-    <div className="px-8 md:px-40">
+    <div className="px-8 md:px-40 bg-[#0171dc]">
       <div className="flex justify-between py-4">
-        <div className="text-3xl font-bold">
+        <div className="text-3xl font-bold text-yellow-400">
           <span className={roboto.className}>Market</span>
         </div>
         {userId ? (
           <Link href={"/home"}>
-            <div className="py-2 px-4 rounded-md border text-sm">Continue</div>
+            <div className="py-2 px-4 rounded-md border border-yellow-400 text-sm text-white font-semibold hover:bg-blue-500">
+              Continue
+            </div>
           </Link>
         ) : (
           <Link href={"/signin"}>
-            <div className="py-2 px-4 rounded-md border text-sm">Sign In</div>
+            <div className="py-2 px-4 rounded-md border border-yellow-400 text-sm text-white font-semibold hover:bg-blue-500">
+              Sign In
+            </div>
           </Link>
         )}
       </div>

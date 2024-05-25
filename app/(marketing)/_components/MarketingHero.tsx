@@ -2,7 +2,7 @@ import Image from "next/image";
 
 function MarketingHero() {
   return (
-    <div className="flex flex-col md:flex-row justify-between items-center m-4 md:mx-20 lg:mx-40 bg-red-50/50 rounded-xl">
+    <div className="flex flex-col md:mt-10 md:flex-row justify-between items-center m-4 md:mx-20 lg:mx-40 rounded-xl">
       <h1
         className="md:text-3xl lg:text-4xl md:leading-10
                 flex justify-start

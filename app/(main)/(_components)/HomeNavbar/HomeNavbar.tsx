@@ -9,36 +9,36 @@ const roboto = Roboto({
 });
 function HomeNavbar() {
   return (
-    <nav className="flex items-center justify-around py-4">
+    <nav className="flex items-center justify-around py-4 bg-[#0171dc]">
       <Link href={"/home"}>
-        <div className="font-bold text-3xl">
+        <div className="font-bold text-3xl text-yellow-500">
           <span className={roboto.className}>Market</span>
         </div>
       </Link>
-      <div className="flex gap-8">
+      <div className="flex gap-8 text-yellow-500">
         <div className="flex items-center gap-2">
           <Link href={"/product"}>
-            <div className="text-neutral-600 hover:text-black text-sm">
+            <div className="font-semibold hover:text-yellow-600 text-sm">
               Products
             </div>
           </Link>
           <Link href={"/product/new"}>
             <PlusIcon
               size={22}
-              className="rounded-3xl  p-1 bg-neutral-100 hover:bg-neutral-200"
+              className="rounded-3xl p-1 transition-colors bg-yellow-400 hover:bg-blue-500 text-blue-500 hover:text-yellow-400"
             />
           </Link>
         </div>
         <div className="flex items-center gap-2">
           <Link href={"/idea"}>
-            <div className="text-neutral-600 hover:text-black text-sm">
+            <div className="font-semibold hover:text-yellow-600 text-sm">
               Ideas
             </div>
           </Link>
           <Link href={"/idea/new"}>
             <PlusIcon
               size={22}
-              className="rounded-3xl  p-1 bg-neutral-100 hover:bg-neutral-200"
+              className="rounded-3xl p-1 hover:transition-colors bg-yellow-400 hover:bg-blue-500 text-blue-500 hover:text-yellow-400"
             />
           </Link>
         </div>
