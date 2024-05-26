@@ -2,7 +2,7 @@ import "@/drizzle/env.drizzle";
 import { drizzle } from "drizzle-orm/vercel-postgres";
 import { sql } from "@vercel/postgres";
 import * as schema from "./schema";
-import { ilike } from "drizzle-orm";
+import { eq, ilike } from "drizzle-orm";
 
 export const db = drizzle(sql, { schema });
 
@@ -47,5 +47,21 @@ export const createProduct = async ({
     return { ok: true };
   } catch (error) {
     return { ok: false };
+  }
+};
+
+export const getUserProducts = async ({ email }: { email: string }) => {
+  return await db
+    .select()
+    .from(schema.products)
+    .where(eq(schema.products.creatorEmail, email));
+};
+
+export const deleteProduct = async ({ name }: { name: string }) => {
+  try {
+    await db.delete(schema.products).where(eq(schema.products.name, name));
+    return { deleted: true };
+  } catch (error) {
+    return { deleted: false };
   }
 };
