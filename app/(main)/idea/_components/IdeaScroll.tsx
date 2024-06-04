@@ -8,11 +8,8 @@ function IdeaScroll({ search }: { search: string }) {
   const [ideas, setIdeas] = useState<Array<ideaType>>([]);
   const [limit] = useState(8);
   const [offset, setOffset] = useState(0);
-  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
-      if (loading) return;
-      setLoading(true);
       const response = await fetch("/api/v1/get/ideas", {
         method: "POST",
         headers: {},
@@ -27,23 +24,19 @@ function IdeaScroll({ search }: { search: string }) {
         toast({
           title: `${error}`,
         });
-        setLoading(false);
-        return;
       }
       if (data) {
         setIdeas((prevIdeas) => [...prevIdeas, ...data]);
-        setLoading(false);
       }
     };
     fetchData();
-  }, [limit, offset, search, loading]);
+  }, [limit, offset, search]);
 
   useEffect(() => {
     const handleScroll = () => {
       if (
         window.innerHeight + document.documentElement.scrollTop + 100 >=
-          document.documentElement.scrollHeight &&
-        !loading
+        document.documentElement.scrollHeight
       ) {
         setOffset((prevOffset) => prevOffset + 8);
       }
