@@ -22,7 +22,7 @@ function SearchQuery({
     } else {
       router.push(`/${query}?search=${debouncedText}`);
     }
-  }, [debouncedText, router]);
+  }, [debouncedText, router, query]);
 
   const handleText = (e: ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);

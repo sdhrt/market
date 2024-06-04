@@ -15,9 +15,7 @@ async function page({ params }: { params: { id: number } }) {
         <div className="flex flex-col justify-between w-[40%]">
           <div className="flex flex-col gap-2">
             <span className="text-3xl font-bold">{product?.name}</span>
-            <span className="text-sm">
-              Sold by: {product?.creatorName}
-            </span>
+            <span className="text-sm">Sold by: {product?.creatorName}</span>
             <span className="text-sm text-muted-foreground line-clamp-4 overflow-y-scroll">
               {product?.description}
             </span>
@@ -27,7 +25,7 @@ async function page({ params }: { params: { id: number } }) {
               Rs.{product?.price}
             </span>
             <div>
-              <BuyButton />
+              <BuyButton id={params.id} />
             </div>
           </div>
         </div>

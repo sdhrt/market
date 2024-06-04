@@ -2,7 +2,7 @@ import "@/drizzle/env.drizzle";
 import { drizzle } from "drizzle-orm/vercel-postgres";
 import { sql } from "@vercel/postgres";
 import * as schema from "./schema";
-import { eq, ilike, or } from "drizzle-orm";
+import { count, eq, ilike, or } from "drizzle-orm";
 
 export const db = drizzle(sql, { schema });
 
@@ -16,11 +16,24 @@ export const deleteIdea = async ({ id }: { id: number }) => {
   }
 };
 
-export const getIdeas = async ({ query }: { query?: string | undefined }) => {
+export const getIdeasCount = async () => {
+  return db.select({ value: count() }).from(schema.ideas);
+};
+
+export const getIdeas = async ({
+  query,
+  limit = 8,
+  offset = 0,
+}: {
+  query?: string | undefined;
+  limit?: number;
+  offset?: number;
+}) => {
   if (query) {
     return db
       .select()
       .from(schema.ideas)
+      .limit(8)
       .where(
         or(
           ilike(schema.ideas.title, `%${query}%`),
@@ -28,7 +41,10 @@ export const getIdeas = async ({ query }: { query?: string | undefined }) => {
         ),
       );
   }
-  return await db.query.ideas.findMany();
+  return await db.query.ideas.findMany({
+    limit: limit,
+    offset: offset,
+  });
 };
 
 export const getIdea = async (id: number) => {

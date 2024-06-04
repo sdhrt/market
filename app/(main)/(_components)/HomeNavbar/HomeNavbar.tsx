@@ -3,6 +3,7 @@ import { Link } from "next-view-transitions";
 import { Package, PlusIcon } from "lucide-react";
 import { Roboto } from "next/font/google";
 import UserTooltip from "./UserTooltip";
+import Cart from "./Cart";
 
 const roboto = Roboto({
   weight: ["400", "700"],
@@ -45,6 +46,7 @@ function HomeNavbar() {
         </div>
       </div>
       <div className="flex flex-row gap-4 md:gap-8 items-center text-yellow-500">
+        <Cart />
         <Link href={"/user"}>
           <UserTooltip />
         </Link>
