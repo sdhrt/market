@@ -3,16 +3,7 @@ import { productType } from "@/drizzle/schema";
 import Image from "next/image";
 import { Link } from "next-view-transitions";
 import SearchQuery from "../(_components)/Search/SearchQuery";
-
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
+import ProductPagination from "./_components/ProductPagination";
 
 async function ProductPage({
   searchParams,
@@ -34,50 +25,9 @@ async function ProductPage({
         <SearchQuery query={"product"} search={searchParams?.search} />
       </div>
       <div className="p-2">
-        <Pagination>
-          <PaginationContent>
-            {offset >= 8 && (
-              <>
-                <PaginationItem>
-                  <PaginationPrevious href={`product/?offset=${offset - 8}`} />
-                </PaginationItem>
-              </>
-            )}
-            <PaginationItem>
-              <PaginationLink href={`product/?offset=0`} isActive>
-                {offset / 8 + 1}
-              </PaginationLink>
-            </PaginationItem>
-            {offset + 8 < count && (
-              <>
-                <PaginationItem>
-                  <PaginationLink href={`product/?offset=8`}>
-                    {offset / 8 + 2}
-                  </PaginationLink>
-                </PaginationItem>
-              </>
-            )}
-            {offset + 16 < count && (
-              <>
-                <PaginationItem>
-                  <PaginationLink href={`product/?offset=8`}>
-                    {offset / 8 + 3}
-                  </PaginationLink>
-                </PaginationItem>
-              </>
-            )}
-            {offset + 8 < count && (
-              <>
-                <PaginationItem>
-                  <PaginationNext href={`product/?offset=${offset + 8}`} />
-                </PaginationItem>
-              </>
-            )}
-          </PaginationContent>
-        </Pagination>
+        <ProductPagination offset={offset} count={count} />
       </div>
-
-      <div className="flex flex-wrap gap-4 justify-center md:justify-normal">
+      <div className="flex flex-wrap gap-4 justify-center">
         {products.map((product) => {
           const image = JSON.parse(product?.images!)[0];
           return (
@@ -100,6 +50,9 @@ async function ProductPage({
             </Link>
           );
         })}
+      </div>
+      <div className="p-2">
+        <ProductPagination offset={offset} count={count} />
       </div>
     </div>
   );

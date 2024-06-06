@@ -40,10 +40,10 @@ export default function ImageUpload({
           )}
         </div>
       </div>
-      <div className="flex flex-col items-center">
+      <div className="flex gap-2 flex-wrap p-2">
         {preview &&
           preview.map((p, index) => (
-            <div key={index} className="relative w-60 h-60">
+            <div key={index} className="relative w-40 h-40">
               <Image src={p} alt="Image preview" objectFit="contain" fill />
             </div>
           ))}

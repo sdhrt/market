@@ -11,6 +11,7 @@ async function Userpage() {
           email={user?.primaryEmailAddress?.emailAddress as string}
         />
         <UserIdeas email={user?.primaryEmailAddress?.emailAddress as string} />
+        <div className="min-h-60"></div>
       </div>
     </div>
   );
